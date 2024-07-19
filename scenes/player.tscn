@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://23nfu1lwkvmx"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_8nyy8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7xar5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ve05n"]
+size = Vector3(0.48, 0.294, 0.729383)
+
+[node name="Player" type="VehicleBody3D"]
+continuous_cd = true
+script = ExtResource("1_8nyy8")
+
+[node name="wheel front left" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.36, 0.1, -0.473)
+use_as_steering = true
+wheel_radius = 0.2
+wheel_rest_length = 0.05
+suspension_travel = 0.1
+suspension_stiffness = 50.0
+
+[node name="Mesh" type="MeshInstance3D" parent="wheel front left"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_7xar5")
+skeleton = NodePath("../..")
+
+[node name="wheel front right" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.36, 0.1, -0.473179)
+use_as_steering = true
+wheel_radius = 0.2
+wheel_rest_length = 0.05
+suspension_travel = 0.1
+suspension_stiffness = 50.0
+
+[node name="Mesh" type="MeshInstance3D" parent="wheel front right"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_7xar5")
+skeleton = NodePath("../..")
+
+[node name="wheel back left" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.36, 0.1, 0.558)
+use_as_traction = true
+wheel_radius = 0.2
+wheel_rest_length = 0.05
+suspension_travel = 0.1
+suspension_stiffness = 50.0
+
+[node name="Mesh" type="MeshInstance3D" parent="wheel back left"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_7xar5")
+skeleton = NodePath("../..")
+
+[node name="wheel back right" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.36, 0.1, 0.558)
+use_as_traction = true
+wheel_radius = 0.2
+wheel_rest_length = 0.05
+suspension_travel = 0.1
+suspension_stiffness = 50.0
+
+[node name="Mesh" type="MeshInstance3D" parent="wheel back right"]
+transform = Transform3D(0.2, 0, -1.27146e-08, 0, 0.2, 0, 1.27146e-08, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_7xar5")
+skeleton = NodePath("../..")
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="body" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.667028, 0, 0, 0, 0.357956, 0, 0, 0, 1.66656, 0, 0.309984, 0)
+mesh = SubResource("BoxMesh_7xar5")
+skeleton = NodePath("../..")
+
+[node name="cockpit" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.560456, 0, 0, 0, 0.357956, 0, 0, 0, 0.802161, 0, 0.545244, 0.0847819)
+mesh = SubResource("BoxMesh_7xar5")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996707, -0.0810862, 0, 0.0810862, 0.996707, 0, 2.30741, 6.21962)
+current = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.338, 0)
+shape = SubResource("BoxShape3D_ve05n")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.610977, 0.0776792)
+shape = SubResource("BoxShape3D_ve05n")

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://5x08nt4mer6g"]
+
+[ext_resource type="PackedScene" uid="uid://23nfu1lwkvmx" path="res://scenes/player.tscn" id="1_o1hnk"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_23hjl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mobrm"]
+size = Vector3(2, 0.1, 2)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_23hjl")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_mobrm")
+
+[node name="Player" parent="." instance=ExtResource("1_o1hnk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.39775, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.65149, -0.310339, 0.69228, -0.758658, -0.2665, 0.594488, 0, -0.912506, -0.409063, 2.18521, 5.21347, 3.18072)
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.0848481, -0.651128, -0.75421, 0.655534, -0.60653, 0.449885, -0.750384, -0.456238, 0.4783, 2.18521, 5.21347, 3.18072)
+light_energy = 0.3
+light_volumetric_fog_energy = 0.0
