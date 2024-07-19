@@ -12,16 +12,17 @@ size = Vector3(0.586, 0.285316, 0.789)
 
 [node name="Player" type="VehicleBody3D"]
 script = ExtResource("1_8nyy8")
-speed = 50.0
-brake_force = 5.0
+max_speed = 80.0
+steer_angle = 25.0
+steer_speed = 30.0
 
 [node name="wheel front left" type="VehicleWheel3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.36, 0.1, -0.473)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.36, 0.123877, -0.473)
 use_as_steering = true
-wheel_roll_influence = 1.0
-wheel_radius = 0.2
+wheel_roll_influence = 3.0
+wheel_radius = 0.14
 wheel_friction_slip = 1.0
-suspension_stiffness = 50.0
+suspension_stiffness = 70.0
 
 [node name="Mesh" type="MeshInstance3D" parent="wheel front left"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
@@ -29,12 +30,12 @@ mesh = SubResource("BoxMesh_7xar5")
 skeleton = NodePath("../..")
 
 [node name="wheel front right" type="VehicleWheel3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.36, 0.1, -0.473179)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.36, 0.123877, -0.473179)
 use_as_steering = true
-wheel_roll_influence = 1.0
-wheel_radius = 0.2
+wheel_roll_influence = 3.0
+wheel_radius = 0.14
 wheel_friction_slip = 1.0
-suspension_stiffness = 50.0
+suspension_stiffness = 70.0
 
 [node name="Mesh" type="MeshInstance3D" parent="wheel front right"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
@@ -42,12 +43,12 @@ mesh = SubResource("BoxMesh_7xar5")
 skeleton = NodePath("../..")
 
 [node name="wheel back left" type="VehicleWheel3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.36, 0.1, 0.558)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.36, 0.123877, 0.558)
 use_as_traction = true
-wheel_roll_influence = 1.0
-wheel_radius = 0.2
+wheel_roll_influence = 3.0
+wheel_radius = 0.14
 wheel_friction_slip = 10.0
-suspension_stiffness = 50.0
+suspension_stiffness = 70.0
 
 [node name="Mesh" type="MeshInstance3D" parent="wheel back left"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
@@ -55,12 +56,12 @@ mesh = SubResource("BoxMesh_7xar5")
 skeleton = NodePath("../..")
 
 [node name="wheel back right" type="VehicleWheel3D" parent="."]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.36, 0.1, 0.558)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.36, 0.123877, 0.558)
 use_as_traction = true
-wheel_roll_influence = 1.0
-wheel_radius = 0.2
+wheel_roll_influence = 3.0
+wheel_radius = 0.14
 wheel_friction_slip = 10.0
-suspension_stiffness = 50.0
+suspension_stiffness = 70.0
 
 [node name="Mesh" type="MeshInstance3D" parent="wheel back right"]
 transform = Transform3D(0.2, 0, -1.27146e-08, 0, 0.2, 0, 1.27146e-08, 0, 0.2, 0, 0, 0)
