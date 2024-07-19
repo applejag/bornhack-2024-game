@@ -1,20 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://5x08nt4mer6g"]
+[gd_scene load_steps=9 format=3 uid="uid://5x08nt4mer6g"]
 
+[ext_resource type="Texture2D" uid="uid://bfhxhasa5xwu6" path="res://textures/Kenney-Prototype/Dark/texture_01.png" id="1_41lgv"]
 [ext_resource type="PackedScene" uid="uid://23nfu1lwkvmx" path="res://scenes/player.tscn" id="1_o1hnk"]
+[ext_resource type="Texture2D" uid="uid://ckf316dlvi6vh" path="res://textures/semicircle.png" id="2_tg7hh"]
+[ext_resource type="Script" path="res://scenes/speedometer.gd" id="3_kxqka"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_23hjl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfvdp"]
+albedo_texture = ExtResource("1_41lgv")
+uv1_scale = Vector3(100, 100, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mobrm"]
 size = Vector3(2, 0.1, 2)
 
+[sub_resource type="LabelSettings" id="LabelSettings_vrgqa"]
+font_size = 48
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("PlaneMesh_23hjl")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_rfvdp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
@@ -31,3 +42,44 @@ shadow_enabled = true
 transform = Transform3D(-0.0848481, -0.651128, -0.75421, 0.655534, -0.60653, 0.449885, -0.750384, -0.456238, 0.4783, 2.18521, 5.21347, 3.18072)
 light_energy = 0.3
 light_volumetric_fog_energy = 0.0
+
+[node name="Speedometer" type="TextureProgressBar" parent="." node_paths=PackedStringArray("player", "speed_label")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -151.0
+offset_right = 532.0
+offset_bottom = 105.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+step = 0.0
+value = 50.0
+fill_mode = 4
+texture_under = ExtResource("2_tg7hh")
+texture_progress = ExtResource("2_tg7hh")
+tint_under = Color(0.35, 0.238, 0.238, 1)
+tint_progress = Color(1, 0.28, 0.04, 1)
+radial_initial_angle = 270.0
+radial_fill_degrees = 180.0
+radial_center_offset = Vector2(0, 256)
+script = ExtResource("3_kxqka")
+player = NodePath("../Player")
+speed_label = NodePath("Label")
+
+[node name="Label" type="Label" parent="Speedometer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -64.0
+offset_right = 81.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0 km/h"
+label_settings = SubResource("LabelSettings_vrgqa")
+horizontal_alignment = 1
