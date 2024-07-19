@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://23nfu1lwkvmx"]
+[gd_scene load_steps=6 format=3 uid="uid://23nfu1lwkvmx"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_8nyy8"]
+[ext_resource type="Script" path="res://scenes/camera.gd" id="2_hiin7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7xar5"]
 
@@ -13,10 +14,11 @@ size = Vector3(0.586, 0.285316, 0.789)
 [node name="Player" type="VehicleBody3D"]
 script = ExtResource("1_8nyy8")
 max_speed = 80.0
+reverse_speed_factor = 0.4
 steer_angle = 25.0
 steer_speed = 30.0
 jump_force = 15.0
-jump_angular = 2.7
+jump_angular = 2.2
 jump_max_y = 0.3
 
 [node name="wheel front left" type="VehicleWheel3D" parent="."]
@@ -25,7 +27,7 @@ use_as_steering = true
 wheel_roll_influence = 3.0
 wheel_radius = 0.14
 wheel_friction_slip = 1.0
-suspension_stiffness = 70.0
+suspension_stiffness = 50.0
 
 [node name="Mesh" type="MeshInstance3D" parent="wheel front left"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
@@ -38,7 +40,7 @@ use_as_steering = true
 wheel_roll_influence = 3.0
 wheel_radius = 0.14
 wheel_friction_slip = 1.0
-suspension_stiffness = 70.0
+suspension_stiffness = 50.0
 
 [node name="Mesh" type="MeshInstance3D" parent="wheel front right"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
@@ -51,7 +53,7 @@ use_as_traction = true
 wheel_roll_influence = 3.0
 wheel_radius = 0.14
 wheel_friction_slip = 10.0
-suspension_stiffness = 70.0
+suspension_stiffness = 50.0
 
 [node name="Mesh" type="MeshInstance3D" parent="wheel back left"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
@@ -64,7 +66,7 @@ use_as_traction = true
 wheel_roll_influence = 3.0
 wheel_radius = 0.14
 wheel_friction_slip = 10.0
-suspension_stiffness = 70.0
+suspension_stiffness = 50.0
 
 [node name="Mesh" type="MeshInstance3D" parent="wheel back right"]
 transform = Transform3D(0.2, 0, -1.27146e-08, 0, 0.2, 0, 1.27146e-08, 0, 0.2, 0, 0, 0)
@@ -83,10 +85,6 @@ transform = Transform3D(0.560456, 0, 0, 0, 0.357956, 0, 0, 0, 0.802161, 0, 0.545
 mesh = SubResource("BoxMesh_7xar5")
 skeleton = NodePath("../..")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.996707, -0.0810862, 0, 0.0810862, 0.996707, 0, 2.30741, 6.21962)
-current = true
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00311036, 0.312616, -0.00282127)
 shape = SubResource("BoxShape3D_ve05n")
@@ -99,4 +97,17 @@ shape = SubResource("BoxShape3D_7c8kw")
 wait_time = 2.0
 one_shot = true
 
+[node name="ResetJumpDebounce" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Camera arm" type="Marker3D" parent="."]
+top_level = true
+script = ExtResource("2_hiin7")
+
+[node name="Camera3D" type="Camera3D" parent="Camera arm"]
+transform = Transform3D(1, 0, 0, 0, 0.996707, -0.0810862, 0, 0.0810862, 0.996707, 0, 2.30741, 6.21962)
+current = true
+
 [connection signal="timeout" from="ResetCarDebounce" to="." method="_on_reset_car_debounce_timeout"]
+[connection signal="timeout" from="ResetJumpDebounce" to="." method="_on_reset_jump_debounce_timeout"]
