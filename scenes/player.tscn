@@ -15,6 +15,9 @@ script = ExtResource("1_8nyy8")
 max_speed = 80.0
 steer_angle = 25.0
 steer_speed = 30.0
+jump_force = 15.0
+jump_angular = 2.7
+jump_max_y = 0.3
 
 [node name="wheel front left" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.36, 0.123877, -0.473)
@@ -91,3 +94,9 @@ shape = SubResource("BoxShape3D_ve05n")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.580135, 0.0870041)
 shape = SubResource("BoxShape3D_7c8kw")
+
+[node name="ResetCarDebounce" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="ResetCarDebounce" to="." method="_on_reset_car_debounce_timeout"]

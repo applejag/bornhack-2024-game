@@ -9,6 +9,13 @@ extends VehicleBody3D
 @export_range(0, 90) var steer_angle: float = 30
 @export var steer_speed: float = 1
 
+@export var jump_force: float = 100
+@export var jump_angular: float = 50
+@export var jump_max_y: float = 0.15
+
+@onready var reset_car_timer: Timer = get_node("ResetCarDebounce")
+var can_reset_car: bool = true
+
 func _process(delta: float) -> void:
     var current_velocity = linear_velocity
     var forward_mps = (current_velocity * transform.basis).x
@@ -40,3 +47,19 @@ func _process(delta: float) -> void:
         move_toward(rad_to_deg(steering), target_steering, steer_speed * delta),
         -steer_angle,
         steer_angle))
+
+    if Input.is_action_just_pressed("jump") and position.y < jump_max_y:
+        linear_velocity.y = jump_force
+        var added_angular = Vector3.RIGHT * -jump_angular * transform.basis.inverse()
+        angular_velocity += added_angular
+
+    if Input.is_action_just_pressed("reset_car") and can_reset_car:
+        rotation = Vector3.ZERO
+        angular_velocity = Vector3.ZERO
+        linear_velocity = Vector3.ZERO
+        position += Vector3.UP * 0.5
+        can_reset_car = false
+        reset_car_timer.start()
+
+func _on_reset_car_debounce_timeout():
+    can_reset_car = true
