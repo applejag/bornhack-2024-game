@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://23nfu1lwkvmx"]
+[gd_scene load_steps=31 format=3 uid="uid://23nfu1lwkvmx"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_8nyy8"]
 [ext_resource type="Texture2D" uid="uid://rd00dwxpqvid" path="res://models/saab9000_0.png" id="2_0iup4"]
@@ -194,8 +194,6 @@ bottom_radius = 0.01
 height = 10.0
 radial_segments = 10
 
-[sub_resource type="PointMesh" id="PointMesh_uavb6"]
-
 [sub_resource type="Curve" id="Curve_nfnpm"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -384,9 +382,6 @@ mesh = SubResource("CylinderMesh_sdq05")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.49012e-08, -0.474729)
 script = ExtResource("4_ruh3n")
 bullet_speed = 30.0
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Cannon/ShootPoint"]
-draw_pass_1 = SubResource("PointMesh_uavb6")
 
 [node name="saab9000" parent="." instance=ExtResource("4_oq0nv")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, -0.0963624, 0)
