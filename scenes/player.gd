@@ -5,6 +5,7 @@ extends VehicleBody3D
 @export var max_speed: float = 30
 @export_range(0, 1) var reverse_speed_factor: float = 0.3
 @export var acceleration: float = 5
+@export var acceleration_max_speed: float = 10
 @export var brake_force: float = 1
 
 @export_group("Steering")
@@ -39,9 +40,10 @@ func _process(delta: float) -> void:
 	var current_speed = current_velocity.length()
 
 	if Input.is_action_pressed("move_forward"):
+		print("current_speed:", current_speed)
 		# Increase engine force at low speeds to make the initial acceleration faster.
-		if current_speed < acceleration and current_speed != 0:
-			engine_force = clamp(max_speed * acceleration / current_speed, 0, 100)
+		if current_speed < acceleration_max_speed and current_speed > 0.0001:
+			engine_force = max_speed * acceleration / current_speed
 		else:
 			engine_force = max_speed
 	else:
@@ -50,7 +52,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("move_back"):
 		# Increase engine force at low speeds to make the initial acceleration faster.
 		if forward_mps >= -1:
-			if current_speed < acceleration and current_speed != 0:
+			if current_speed < acceleration_max_speed and current_speed > 0.0001:
 				engine_force = -clamp(max_speed * reverse_speed_factor * acceleration / current_speed, 0, 100)
 			else:
 				engine_force = -max_speed * reverse_speed_factor
@@ -103,16 +105,15 @@ func _physics_process(delta) -> void:
 		JumpState.Grounded:
 			pass
 		JumpState.Falling:
-			if position.y >= jump_last_y:
+			if linear_velocity.y >= 0:
 				jump_state = JumpState.Grounded
 				jump_state_time = 0
 				print("grounded")
 		JumpState.Ascending:
-			if position.y <= jump_last_y:
+			if linear_velocity.y < 0:
 				jump_state = JumpState.Falling
 				jump_state_time = 0
 				print("falling")
-	jump_last_y = position.y
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if jump_state == JumpState.Falling:

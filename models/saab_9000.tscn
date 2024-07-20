@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct8a6f36d60rt"]
+
+[ext_resource type="PackedScene" uid="uid://c8gifmasl8i2o" path="res://models/saab9000.gltf" id="1_jm6q2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5mha"]
+albedo_color = Color(1, 1, 0.368627, 1)
+emission_enabled = true
+emission = Color(1, 0.968627, 0, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yxcca"]
+albedo_color = Color(0.650128, 0.650128, 0.650128, 1)
+metallic = 0.6
+metallic_specular = 1.0
+roughness = 0.19
+refraction_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q5md7"]
+albedo_color = Color(0.5632, 0.64, 0.61824, 1)
+emission = Color(0.864675, 0.864675, 0.864675, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gowhc"]
+albedo_color = Color(0.87, 0.0174, 0.0174, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 0.5
+
+[node name="saab9000" instance=ExtResource("1_jm6q2")]
+
+[node name="Front lights" parent="Node" index="0"]
+material_override = SubResource("StandardMaterial3D_x5mha")
+
+[node name="Windows" parent="Node" index="2"]
+material_override = SubResource("StandardMaterial3D_yxcca")
+
+[node name="Back reverse lights" parent="Node" index="3"]
+material_override = SubResource("StandardMaterial3D_q5md7")
+
+[node name="Back break lights" parent="Node" index="4"]
+material_override = SubResource("StandardMaterial3D_gowhc")
+
+[node name="Wheel back right" parent="Node" index="5"]
+visible = false
+
+[node name="Wheel back left" parent="Node" index="6"]
+visible = false
+
+[node name="Wheel front right" parent="Node" index="7"]
+visible = false
+
+[node name="Wheel front left" parent="Node" index="8"]
+visible = false
