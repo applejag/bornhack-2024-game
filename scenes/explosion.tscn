@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnrvgx10xvgku"]
+
+[ext_resource type="Script" path="res://scenes/explosion.gd" id="1_rqj2w"]
+[ext_resource type="Script" path="res://scenes/DamageDealer.gd" id="2_pmhrj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ct1dl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3mug"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.564706)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hhl1q"]
+material = SubResource("StandardMaterial3D_v3mug")
+
+[node name="Explosion" type="Area3D"]
+monitorable = false
+script = ExtResource("1_rqj2w")
+scale_end = 3.0
+scale_time_seconds = 0.2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ct1dl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_hhl1q")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+mesh = SubResource("SphereMesh_hhl1q")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+mesh = SubResource("SphereMesh_hhl1q")
+
+[node name="DamageDealer" type="Node" parent="."]
+script = ExtResource("2_pmhrj")
+
+[connection signal="body_entered" from="." to="DamageDealer" method="_on_body_entered"]

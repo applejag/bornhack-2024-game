@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://23nfu1lwkvmx"]
+[gd_scene load_steps=33 format=3 uid="uid://23nfu1lwkvmx"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_8nyy8"]
 [ext_resource type="Texture2D" uid="uid://rd00dwxpqvid" path="res://models/saab9000_0.png" id="2_0iup4"]
+[ext_resource type="Script" path="res://scenes/health.gd" id="2_a3uq1"]
 [ext_resource type="Script" path="res://scenes/camera.gd" id="2_hiin7"]
 [ext_resource type="PackedScene" uid="uid://ct8a6f36d60rt" path="res://models/saab_9000.tscn" id="4_oq0nv"]
 [ext_resource type="Script" path="res://scenes/PlayerShooting.gd" id="4_ruh3n"]
@@ -188,9 +189,17 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_g1r87")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uocwo"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.470588)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 0.5
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_sdq05"]
-top_radius = 0.01
-bottom_radius = 0.01
+material = SubResource("StandardMaterial3D_uocwo")
+top_radius = 0.02
+bottom_radius = 0.02
 height = 10.0
 radial_segments = 10
 
@@ -254,7 +263,7 @@ max_speed = 1300.0
 reverse_speed_factor = 0.4
 acceleration = 3.0
 steer_angle = 35.0
-steer_speed = 30.0
+steer_speed = 50.0
 jump_force = 14.0
 jump_angular = 12.0
 jump_max_y = 0.3
@@ -262,6 +271,9 @@ jump_revert_rotation_speed = 15.0
 jump_revert_factor_curve_time = 3.5
 jump_revert_factor_curve = SubResource("Curve_kfhhm")
 upside_down_max_angle = 70.0
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_a3uq1")
 
 [node name="wheel front left" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.450289, 0.15359, -0.40023)
