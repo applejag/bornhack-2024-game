@@ -61,7 +61,7 @@ func _process(delta: float) -> void:
 		# Increase engine force at low speeds to make the initial acceleration faster.
 		if forward_mps >= -1:
 			if current_speed < acceleration_max_speed and current_speed > 0.0001:
-				engine_force = -clamp(max_speed * reverse_speed_factor * acceleration / current_speed, 0, 100)
+				engine_force = -max_speed * reverse_speed_factor * acceleration / current_speed
 			else:
 				engine_force = -max_speed * reverse_speed_factor
 		else:
