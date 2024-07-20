@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://5x08nt4mer6g"]
+[gd_scene load_steps=14 format=3 uid="uid://5x08nt4mer6g"]
 
 [ext_resource type="Texture2D" uid="uid://bfhxhasa5xwu6" path="res://textures/Kenney-Prototype/Dark/texture_01.png" id="1_41lgv"]
 [ext_resource type="PackedScene" uid="uid://23nfu1lwkvmx" path="res://scenes/player.tscn" id="1_o1hnk"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/speedometer.gd" id="3_kxqka"]
 [ext_resource type="PackedScene" uid="uid://ctvbdf6s8kgus" path="res://models/light_post.tscn" id="5_57wtt"]
 [ext_resource type="Script" path="res://scenes/health.gd" id="6_hegfg"]
+[ext_resource type="PackedScene" uid="uid://wklnh5bbbv0w" path="res://scenes/tank1.tscn" id="7_dp2in"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_23hjl"]
 
@@ -180,6 +181,9 @@ mesh = SubResource("BoxMesh_g1x0n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy5"]
 shape = SubResource("BoxShape3D_ev1p2")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("7_dp2in")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1224, 0, 5.12709)
 
 [connection signal="health_depleted" from="Enemy/Health" to="Enemy" method="queue_free"]
 [connection signal="health_depleted" from="Enemy2/Health" to="Enemy2" method="queue_free"]

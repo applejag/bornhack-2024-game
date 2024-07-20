@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://wklnh5bbbv0w"]
+
+[ext_resource type="PackedScene" uid="uid://c3tocc7oitrjg" path="res://models/tank1.gltf" id="1_3r31d"]
+[ext_resource type="Script" path="res://scenes/health.gd" id="1_h3ebx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_un67q"]
+radius = 0.344616
+height = 2.99785
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r0557"]
+size = Vector3(1, 1.2489, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xggio"]
+size = Vector3(0.426025, 2.36008, 1.75098)
+
+[node name="tank1" type="CharacterBody3D"]
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("1_h3ebx")
+health = 5
+max_health = 5
+
+[node name="tank1" parent="." instance=ExtResource("1_3r31d")]
+
+[node name="wheel right" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0.357935, 1.15626)
+shape = SubResource("CapsuleShape3D_un67q")
+
+[node name="wheel left" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0.358, -1.156)
+shape = SubResource("CapsuleShape3D_un67q")
+
+[node name="body" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.481378, 1.14824, -0.00171888)
+shape = SubResource("BoxShape3D_r0557")
+
+[node name="body2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.0609694, 0.407247, -0.000254035)
+shape = SubResource("BoxShape3D_xggio")
+
+[connection signal="health_depleted" from="Health" to="." method="queue_free"]
+
+[editable path="tank1"]
