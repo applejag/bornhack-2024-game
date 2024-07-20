@@ -44,6 +44,11 @@ transform = Transform3D(-0.0848481, -0.651128, -0.75421, 0.655534, -0.60653, 0.4
 light_energy = 0.3
 light_volumetric_fog_energy = 0.0
 
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.0848481, -0.651128, -0.75421, 0.867539, 0.324026, -0.377337, 0.490079, -0.686323, 0.537386, 2.18521, 5.21347, 3.18072)
+light_energy = 0.3
+light_volumetric_fog_energy = 0.0
+
 [node name="Speedometer" type="TextureProgressBar" parent="." node_paths=PackedStringArray("player", "speed_label")]
 anchors_preset = 2
 anchor_top = 1.0

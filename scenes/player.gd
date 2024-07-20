@@ -34,6 +34,13 @@ var jump_state_time: float = 0;
 @onready var forward_last_pos: Vector3 = position
 var forward: Vector3 = Vector3.FORWARD
 
+@export_group("Shooting")
+
+@export_range(0, 180) var upside_down_max_angle: float = 90
+
+@onready var cannon_anchor: Node3D = get_node("Cannon")
+@onready var cannon_orig_basis: Basis = cannon_anchor.transform.basis
+
 func _process(delta: float) -> void:
 	var current_velocity = linear_velocity
 	var forward_mps = (current_velocity * transform.basis).x
@@ -72,6 +79,13 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("reset_car") and can_reset_car:
 		reset_car()
+
+	var down_angle_rad = transform.basis.y.angle_to(Vector3.DOWN)
+	var down_angle_deg = rad_to_deg(down_angle_rad)
+	if down_angle_deg < upside_down_max_angle:
+		cannon_anchor.look_at(cannon_anchor.global_position + Vector3.DOWN, transform.basis.y)
+	else:
+		cannon_anchor.transform.basis = cannon_orig_basis
 
 func jump() -> void:
 	linear_velocity.y = jump_force
