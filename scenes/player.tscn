@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://23nfu1lwkvmx"]
+[gd_scene load_steps=30 format=3 uid="uid://23nfu1lwkvmx"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_8nyy8"]
 [ext_resource type="Texture2D" uid="uid://rd00dwxpqvid" path="res://models/saab9000_0.png" id="2_0iup4"]
@@ -193,6 +193,58 @@ bottom_radius = 0.01
 height = 10.0
 radial_segments = 10
 
+[sub_resource type="Curve" id="Curve_nfnpm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5duu2"]
+curve = SubResource("Curve_nfnpm")
+
+[sub_resource type="Curve" id="Curve_eq14b"]
+_data = [Vector2(0, 0.95), 0.0, -2.345, 0, 0, Vector2(1, 0), -0.476445, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6qje6"]
+curve = SubResource("Curve_eq14b")
+
+[sub_resource type="Curve" id="Curve_uh4dt"]
+max_value = 3.0
+_data = [Vector2(0, 2.7), 0.0, -5.628, 0, 0, Vector2(1, 0.15), -3.37161, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2vjnj"]
+curve = SubResource("Curve_uh4dt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sgdgp"]
+lifetime_randomness = 0.5
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.5
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+radial_velocity_min = 0.5
+radial_velocity_max = 2.0
+radial_velocity_curve = SubResource("CurveTexture_6qje6")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.2
+scale_over_velocity_min = 0.1
+scale_over_velocity_max = 3.0
+scale_over_velocity_curve = SubResource("CurveTexture_2vjnj")
+color = Color(1, 1, 1, 0.54902)
+alpha_curve = SubResource("CurveTexture_5duu2")
+turbulence_initial_displacement_min = 9.1
+turbulence_initial_displacement_max = 9.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5bio"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_aeq27"]
+material = SubResource("StandardMaterial3D_j5bio")
+radial_segments = 10
+rings = 10
+
 [node name="Player" type="VehicleBody3D"]
 mass = 750.0
 angular_damp = 3.0
@@ -327,6 +379,16 @@ mesh = SubResource("CylinderMesh_sdq05")
 
 [node name="saab9000" parent="." instance=ExtResource("4_oq0nv")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, -0.0963624, 0)
+
+[node name="JumpParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 120
+lifetime = 2.5
+one_shot = true
+explosiveness = 0.97
+randomness = 0.85
+process_material = SubResource("ParticleProcessMaterial_sgdgp")
+draw_pass_1 = SubResource("SphereMesh_aeq27")
 
 [connection signal="timeout" from="ResetCarDebounce" to="." method="_on_reset_car_debounce_timeout"]
 [connection signal="timeout" from="ResetJumpDebounce" to="." method="_on_reset_jump_debounce_timeout"]

@@ -31,6 +31,8 @@ var jump_state: JumpState = JumpState.Grounded
 @onready var jump_last_y: float = position.y
 var jump_state_time: float = 0;
 
+@onready var jump_particles: GPUParticles3D = get_node("JumpParticles")
+
 @onready var forward_last_pos: Vector3 = position
 var forward: Vector3 = Vector3.FORWARD
 
@@ -47,7 +49,6 @@ func _process(delta: float) -> void:
 	var current_speed = current_velocity.length()
 
 	if Input.is_action_pressed("move_forward"):
-		print("current_speed:", current_speed)
 		# Increase engine force at low speeds to make the initial acceleration faster.
 		if current_speed < acceleration_max_speed and current_speed > 0.0001:
 			engine_force = max_speed * acceleration / current_speed
@@ -93,6 +94,7 @@ func jump() -> void:
 	angular_velocity += added_angular
 	can_jump = true
 	reset_jump_timer.start()
+	jump_particles.restart()
 
 	jump_state = JumpState.Ascending
 	jump_last_y = position.y
