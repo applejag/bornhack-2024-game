@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://5x08nt4mer6g"]
+[gd_scene load_steps=10 format=3 uid="uid://5x08nt4mer6g"]
 
 [ext_resource type="Texture2D" uid="uid://bfhxhasa5xwu6" path="res://textures/Kenney-Prototype/Dark/texture_01.png" id="1_41lgv"]
 [ext_resource type="PackedScene" uid="uid://23nfu1lwkvmx" path="res://scenes/player.tscn" id="1_o1hnk"]
 [ext_resource type="Texture2D" uid="uid://ckf316dlvi6vh" path="res://textures/semicircle.png" id="2_tg7hh"]
 [ext_resource type="Script" path="res://scenes/speedometer.gd" id="3_kxqka"]
+[ext_resource type="PackedScene" uid="uid://ctvbdf6s8kgus" path="res://models/light_post.tscn" id="5_57wtt"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_23hjl"]
 
@@ -90,3 +91,12 @@ offset_top = 10.0
 offset_right = 264.0
 offset_bottom = 33.0
 text = "Press [R] to reset car orientation"
+
+[node name="light-post" parent="." instance=ExtResource("5_57wtt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25481, 4.76837e-07, -6.53981)
+
+[node name="light-post2" parent="." instance=ExtResource("5_57wtt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25481, 4.76837e-07, -18.5398)
+
+[node name="light-post3" parent="." instance=ExtResource("5_57wtt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25481, 4.76837e-07, -30.5398)
