@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://5x08nt4mer6g"]
+[gd_scene load_steps=13 format=3 uid="uid://5x08nt4mer6g"]
 
 [ext_resource type="Texture2D" uid="uid://bfhxhasa5xwu6" path="res://textures/Kenney-Prototype/Dark/texture_01.png" id="1_41lgv"]
 [ext_resource type="PackedScene" uid="uid://23nfu1lwkvmx" path="res://scenes/player.tscn" id="1_o1hnk"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://scenes/speedometer.gd" id="3_kxqka"]
 [ext_resource type="PackedScene" uid="uid://ctvbdf6s8kgus" path="res://models/light_post.tscn" id="5_57wtt"]
 [ext_resource type="Script" path="res://scenes/health.gd" id="6_hegfg"]
-[ext_resource type="PackedScene" uid="uid://bnrvgx10xvgku" path="res://scenes/explosion.tscn" id="7_i4dkm"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_23hjl"]
 
@@ -181,8 +180,6 @@ mesh = SubResource("BoxMesh_g1x0n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy5"]
 shape = SubResource("BoxShape3D_ev1p2")
-
-[node name="Explosion" parent="." instance=ExtResource("7_i4dkm")]
 
 [connection signal="health_depleted" from="Enemy/Health" to="Enemy" method="queue_free"]
 [connection signal="health_depleted" from="Enemy2/Health" to="Enemy2" method="queue_free"]
