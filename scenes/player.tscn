@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://23nfu1lwkvmx"]
+[gd_scene load_steps=7 format=3 uid="uid://23nfu1lwkvmx"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_8nyy8"]
 [ext_resource type="Script" path="res://scenes/camera.gd" id="2_hiin7"]
+
+[sub_resource type="Curve" id="Curve_kfhhm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_7xar5"]
 
@@ -17,9 +21,12 @@ max_speed = 80.0
 reverse_speed_factor = 0.4
 steer_angle = 25.0
 steer_speed = 30.0
-jump_force = 15.0
+jump_force = 14.0
 jump_angular = 2.2
 jump_max_y = 0.3
+jump_revert_rotation_speed = 10.0
+jump_revert_factor_curve_time = 2.5
+jump_revert_factor_curve = SubResource("Curve_kfhhm")
 
 [node name="wheel front left" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.36, 0.123877, -0.473)
@@ -75,7 +82,7 @@ skeleton = NodePath("../..")
 
 [node name="Model" type="Node3D" parent="."]
 
-[node name="body" type="MeshInstance3D" parent="Model"]
+[node name="chassi" type="MeshInstance3D" parent="Model"]
 transform = Transform3D(0.667028, 0, 0, 0, 0.357956, 0, 0, 0, 1.66656, 0, 0.309984, 0)
 mesh = SubResource("BoxMesh_7xar5")
 skeleton = NodePath("../..")
