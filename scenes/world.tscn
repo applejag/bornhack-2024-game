@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://5x08nt4mer6g"]
+[gd_scene load_steps=16 format=3 uid="uid://5x08nt4mer6g"]
 
 [ext_resource type="Texture2D" uid="uid://bfhxhasa5xwu6" path="res://textures/Kenney-Prototype/Dark/texture_01.png" id="1_41lgv"]
 [ext_resource type="PackedScene" uid="uid://23nfu1lwkvmx" path="res://scenes/player.tscn" id="1_o1hnk"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://ctvbdf6s8kgus" path="res://models/light_post.tscn" id="5_57wtt"]
 [ext_resource type="Script" path="res://scenes/health.gd" id="6_hegfg"]
 [ext_resource type="PackedScene" uid="uid://wklnh5bbbv0w" path="res://scenes/tank1.tscn" id="7_dp2in"]
+[ext_resource type="PackedScene" uid="uid://dgiyvs75u00ef" path="res://scenes/enemy_bullet.tscn" id="8_67td0"]
+[ext_resource type="Script" path="res://scenes/EnemyShootingThrottle.gd" id="9_15sbo"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_23hjl"]
 
@@ -194,8 +196,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.38224, -9.53674e-07, -54.5
 [node name="tank4" parent="." instance=ExtResource("7_dp2in")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6, -9.53674e-07, -52.4361)
 
+[node name="EnemyBullet" parent="." instance=ExtResource("8_67td0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11397, -5.54001)
+
+[node name="EnemyShootingThrottle" type="Node" parent="."]
+script = ExtResource("9_15sbo")
+
+[node name="Timer" type="Timer" parent="EnemyShootingThrottle"]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="health_depleted" from="Enemy/Health" to="Enemy" method="queue_free"]
 [connection signal="health_depleted" from="Enemy2/Health" to="Enemy2" method="queue_free"]
 [connection signal="health_depleted" from="Enemy3/Health" to="Enemy3" method="queue_free"]
 [connection signal="health_depleted" from="Enemy4/Health" to="Enemy4" method="queue_free"]
 [connection signal="health_depleted" from="Enemy5/Health" to="Enemy5" method="queue_free"]
+[connection signal="timeout" from="EnemyShootingThrottle/Timer" to="EnemyShootingThrottle" method="_on_timer_timeout"]

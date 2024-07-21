@@ -27,6 +27,7 @@ size = Vector3(0.2, 0.2, 0.2)
 radius = 0.1
 
 [node name="Bullet" type="RigidBody3D"]
+collision_layer = 2
 continuous_cd = true
 max_contacts_reported = 10
 contact_monitor = true

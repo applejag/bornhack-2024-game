@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://wklnh5bbbv0w"]
+[gd_scene load_steps=10 format=3 uid="uid://wklnh5bbbv0w"]
 
 [ext_resource type="PackedScene" uid="uid://c3tocc7oitrjg" path="res://models/tank1.gltf" id="1_3r31d"]
 [ext_resource type="Script" path="res://scenes/tank.gd" id="1_15cxf"]
 [ext_resource type="Script" path="res://scenes/health.gd" id="1_h3ebx"]
 [ext_resource type="Script" path="res://scenes/OutOfBoundTrigger.gd" id="3_x7a0f"]
+[ext_resource type="Script" path="res://scenes/EnemyShooting.gd" id="5_82ljs"]
+[ext_resource type="PackedScene" uid="uid://dgiyvs75u00ef" path="res://scenes/enemy_bullet.tscn" id="6_xid53"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_un67q"]
 radius = 0.344616
@@ -48,7 +50,18 @@ shape = SubResource("BoxShape3D_r0557")
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0.000254038, 0.407247, -0.0609694)
 shape = SubResource("BoxShape3D_xggio")
 
+[node name="Shooter" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.44877, 1.76378)
+script = ExtResource("5_82ljs")
+bullet = ExtResource("6_xid53")
+bullet_speed = 10.0
+
+[node name="Timer" type="Timer" parent="Shooter"]
+wait_time = 5.0
+autostart = true
+
 [connection signal="health_depleted" from="Health" to="." method="_on_death"]
 [connection signal="out_of_bounds" from="OutOfBoundTrigger" to="." method="_on_death"]
+[connection signal="timeout" from="Shooter/Timer" to="Shooter" method="fire_with_throttle"]
 
 [editable path="tank1"]

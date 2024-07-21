@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://dgiyvs75u00ef"]
+
+[ext_resource type="Script" path="res://scenes/bullet.gd" id="1_f74gb"]
+[ext_resource type="PackedScene" uid="uid://bnrvgx10xvgku" path="res://scenes/explosion.tscn" id="2_kjs70"]
+
+[sub_resource type="Curve" id="Curve_gllyp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0335821, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.88615, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cixkc"]
+curve = SubResource("Curve_gllyp")
+
+[sub_resource type="Curve" id="Curve_lkbv2"]
+min_value = 1.0
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1.29), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l4633"]
+curve = SubResource("Curve_lkbv2")
+
+[sub_resource type="Curve" id="Curve_0gaad"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.34), -1.46968, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i7b6t"]
+curve = SubResource("Curve_0gaad")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ewdv"]
+emission_shape = 1
+emission_sphere_radius = 0.3
+radial_velocity_min = -0.2
+radial_velocity_max = -0.1
+gravity = Vector3(0, 30, 0)
+scale_min = 0.2
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_i7b6t")
+alpha_curve = SubResource("CurveTexture_cixkc")
+hue_variation_max = 0.32
+hue_variation_curve = SubResource("CurveTexture_l4633")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys1gd"]
+transparency = 1
+shading_mode = 2
+diffuse_mode = 3
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 0.447059)
+emission_enabled = true
+emission = Color(0.68, 0.68, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_e648y"]
+material = SubResource("StandardMaterial3D_ys1gd")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qineq"]
+radius = 0.4
+
+[node name="EnemyBullet" type="RigidBody3D"]
+collision_layer = 2
+gravity_scale = 0.0
+continuous_cd = true
+max_contacts_reported = 10
+contact_monitor = true
+linear_velocity = Vector3(0, 0, 1)
+script = ExtResource("1_f74gb")
+spawn_on_collision = ExtResource("2_kjs70")
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_3ewdv")
+draw_pass_1 = SubResource("SphereMesh_e648y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_qineq")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.815686, 0, 1)
+light_energy = 2.0
+light_size = 1.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DeathTimer" to="." method="queue_free"]
