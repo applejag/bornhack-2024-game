@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://wklnh5bbbv0w"]
+[gd_scene load_steps=8 format=3 uid="uid://wklnh5bbbv0w"]
 
 [ext_resource type="PackedScene" uid="uid://c3tocc7oitrjg" path="res://models/tank1.gltf" id="1_3r31d"]
 [ext_resource type="Script" path="res://scenes/tank.gd" id="1_15cxf"]
 [ext_resource type="Script" path="res://scenes/health.gd" id="1_h3ebx"]
+[ext_resource type="Script" path="res://scenes/OutOfBoundTrigger.gd" id="3_x7a0f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_un67q"]
 radius = 0.344616
@@ -25,6 +26,9 @@ script = ExtResource("1_h3ebx")
 health = 5
 max_health = 5
 
+[node name="OutOfBoundTrigger" type="Node3D" parent="."]
+script = ExtResource("3_x7a0f")
+
 [node name="tank1" parent="." instance=ExtResource("1_3r31d")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
@@ -44,6 +48,7 @@ shape = SubResource("BoxShape3D_r0557")
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0.000254038, 0.407247, -0.0609694)
 shape = SubResource("BoxShape3D_xggio")
 
-[connection signal="health_depleted" from="Health" to="." method="queue_free"]
+[connection signal="health_depleted" from="Health" to="." method="_on_death"]
+[connection signal="out_of_bounds" from="OutOfBoundTrigger" to="." method="_on_death"]
 
 [editable path="tank1"]

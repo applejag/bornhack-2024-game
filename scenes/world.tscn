@@ -183,7 +183,16 @@ mesh = SubResource("BoxMesh_g1x0n")
 shape = SubResource("BoxShape3D_ev1p2")
 
 [node name="tank1" parent="." instance=ExtResource("7_dp2in")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1224, 0, 5.12709)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.31683, 0, -52.6876)
+
+[node name="tank2" parent="." instance=ExtResource("7_dp2in")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.91915, 0, -49.2783)
+
+[node name="tank3" parent="." instance=ExtResource("7_dp2in")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.38224, -9.53674e-07, -54.5612)
+
+[node name="tank4" parent="." instance=ExtResource("7_dp2in")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6, -9.53674e-07, -52.4361)
 
 [connection signal="health_depleted" from="Enemy/Health" to="Enemy" method="queue_free"]
 [connection signal="health_depleted" from="Enemy2/Health" to="Enemy2" method="queue_free"]

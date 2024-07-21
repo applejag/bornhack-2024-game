@@ -40,3 +40,7 @@ func _physics_process(delta):
 	velocity.z = move_toward(velocity.z, forward.z * target_speed, acceleration * delta)
 
 	move_and_slide()
+
+# Triggered when out of bounds or when health is depleted
+func _on_death():
+	queue_free()
