@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnrvgx10xvgku"]
+[gd_scene load_steps=7 format=3 uid="uid://bnrvgx10xvgku"]
 
 [ext_resource type="Script" path="res://scenes/explosion.gd" id="1_rqj2w"]
 [ext_resource type="Script" path="res://scenes/DamageDealer.gd" id="2_pmhrj"]
+[ext_resource type="AudioStream" uid="uid://gfpssli3daaq" path="res://sounds/explosion.wav" id="3_1tcrg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ct1dl"]
 
@@ -38,5 +39,9 @@ mesh = SubResource("SphereMesh_hhl1q")
 
 [node name="DamageDealer" type="Node" parent="."]
 script = ExtResource("2_pmhrj")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_1tcrg")
+autoplay = true
 
 [connection signal="body_entered" from="." to="DamageDealer" method="_on_body_entered"]

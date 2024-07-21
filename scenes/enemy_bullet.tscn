@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dgiyvs75u00ef"]
+[gd_scene load_steps=14 format=3 uid="uid://dgiyvs75u00ef"]
 
 [ext_resource type="Script" path="res://scenes/bullet.gd" id="1_f74gb"]
 [ext_resource type="PackedScene" uid="uid://bnrvgx10xvgku" path="res://scenes/explosion.tscn" id="2_kjs70"]
+[ext_resource type="AudioStream" uid="uid://bwogldkn0yho6" path="res://sounds/enemy_bullet.wav" id="3_i241l"]
 
 [sub_resource type="Curve" id="Curve_gllyp"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0335821, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.88615, 0.0, 0, 0]
@@ -84,6 +85,11 @@ shape = SubResource("SphereShape3D_qineq")
 light_color = Color(1, 0.815686, 0, 1)
 light_energy = 2.0
 light_size = 1.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_i241l")
+autoplay = true
+doppler_tracking = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="DeathTimer" to="." method="queue_free"]
