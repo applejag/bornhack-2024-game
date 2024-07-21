@@ -16,15 +16,15 @@ func _process(_delta: float) -> void:
 		timer.start()
 
 		var index = randi() % len(callbacks)
-		callbacks[index].call()
+		var fire_function = callbacks[index]
+		if fire_function.is_valid():
+			fire_function.call()
 		callbacks.remove_at(index)
-		print("actually shoot")
 
 func queue_fire(fire_function: Callable) -> void:
 	# Remove it first to make sure we only have 1 of it
 	callbacks.erase(fire_function)
 	callbacks.append(fire_function)
-	print("queue_fire")
 
 func _on_timer_timeout() -> void:
 	can_shoot = true

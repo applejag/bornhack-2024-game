@@ -261,6 +261,8 @@ radial_segments = 10
 rings = 10
 
 [node name="Player" type="VehicleBody3D"]
+collision_layer = 8
+collision_mask = 29
 mass = 750.0
 angular_damp = 3.0
 script = ExtResource("1_8nyy8")

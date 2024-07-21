@@ -13,6 +13,7 @@ albedo_color = Color(1, 0, 0, 0.564706)
 material = SubResource("StandardMaterial3D_v3mug")
 
 [node name="Explosion" type="Area3D"]
+collision_mask = 13
 monitorable = false
 script = ExtResource("1_rqj2w")
 scale_end = 3.0
