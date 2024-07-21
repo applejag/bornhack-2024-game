@@ -439,26 +439,32 @@ draw_pass_1 = SubResource("SphereMesh_aeq27")
 [node name="AudioHonk" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.196337, -0.682501)
 stream = ExtResource("7_dla27")
+bus = &"SFX"
 
 [node name="AudioJump" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.196337, -0.682501)
 stream = ExtResource("8_km47p")
+bus = &"SFX"
 
 [node name="AudioJumpLand" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.196337, -0.682501)
 stream = ExtResource("9_ep7hg")
+bus = &"SFX"
 
 [node name="AudioShoot" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.196337, -0.682501)
 stream = ExtResource("10_1e0kq")
+bus = &"SFX"
 
 [node name="AudioHurt" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.196337, -0.682501)
 stream = ExtResource("11_kb7e0")
+bus = &"SFX"
 
 [node name="AudioLose" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.196337, -0.682501)
 stream = ExtResource("11_kb7e0")
+bus = &"SFX"
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true

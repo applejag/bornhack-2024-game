@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://cew2jxjmtnsg0"]
+
+[ext_resource type="Script" path="res://scenes/SliderAudioBus.gd" id="2_ru1jy"]
+
+[node name="SoundSettings" type="VBoxContainer"]
+
+[node name="LabelMaster" type="Label" parent="."]
+layout_mode = 2
+text = "Master sound control"
+
+[node name="SliderMaster" type="HSlider" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+value = 100.0
+script = ExtResource("2_ru1jy")
+
+[node name="LabelSfx" type="Label" parent="."]
+layout_mode = 2
+text = "Sound effects"
+
+[node name="SliderSfx" type="HSlider" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+value = 100.0
+script = ExtResource("2_ru1jy")
+bus_name = "SFX"
+
+[node name="LabelMusic" type="Label" parent="."]
+layout_mode = 2
+text = "Music"
+
+[node name="SliderMusic" type="HSlider" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+value = 100.0
+script = ExtResource("2_ru1jy")
+bus_name = "Music"

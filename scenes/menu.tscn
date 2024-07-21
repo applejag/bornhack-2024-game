@@ -1,0 +1,100 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnt3xe7mqjrei"]
+
+[ext_resource type="Script" path="res://scenes/Menu.gd" id="1_v2wet"]
+[ext_resource type="PackedScene" uid="uid://cew2jxjmtnsg0" path="res://scenes/sound_settings.tscn" id="2_filpy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k8f0u"]
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_x6fvx"]
+font_size = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mt17k"]
+bg_color = Color(1, 0.22, 0.22, 0.4)
+border_width_left = 2
+border_width_top = 2
+border_color = Color(0.82, 0.21648, 0.0656, 1)
+
+[node name="menu" type="Node"]
+
+[node name="LabelTitle" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -446.0
+offset_top = -249.0
+offset_right = 447.0
+offset_bottom = -112.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Name of the game"
+label_settings = SubResource("LabelSettings_k8f0u")
+horizontal_alignment = 1
+
+[node name="LabelSubtitle" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.0
+offset_top = -124.0
+offset_right = 294.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BornHack 2024 game jam"
+label_settings = SubResource("LabelSettings_x6fvx")
+horizontal_alignment = 1
+
+[node name="Menu panel" type="Panel" parent="."]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -43.0
+offset_right = 250.0
+offset_bottom = 307.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(250, 150)
+theme_override_styles/panel = SubResource("StyleBoxFlat_mt17k")
+script = ExtResource("1_v2wet")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu panel"]
+custom_minimum_size = Vector2(400, 250)
+layout_mode = 0
+offset_left = 53.0
+offset_top = 53.0
+offset_right = 453.0
+offset_bottom = 93.0
+alignment = 1
+
+[node name="ButtonStart" type="Button" parent="Menu panel/VBoxContainer"]
+layout_mode = 2
+text = "Start game"
+
+[node name="Control" type="Control" parent="Menu panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="SoundSettings" parent="Menu panel/VBoxContainer" instance=ExtResource("2_filpy")]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Menu panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="ButtonExit" type="Button" parent="Menu panel/VBoxContainer"]
+layout_mode = 2
+text = "Exit game"
+
+[connection signal="os_web" from="Menu panel" to="Menu panel/VBoxContainer/ButtonExit" method="queue_free"]
+[connection signal="start_game" from="Menu panel" to="." method="queue_free"]
+[connection signal="button_down" from="Menu panel/VBoxContainer/ButtonStart" to="Menu panel" method="_on_button_start_button_down"]
+[connection signal="button_down" from="Menu panel/VBoxContainer/ButtonExit" to="Menu panel" method="_on_button_exit_button_down"]
