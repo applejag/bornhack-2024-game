@@ -46,6 +46,9 @@ var forward: Vector3 = Vector3.FORWARD
 @onready var cannon_anchor: Node3D = get_node("Cannon")
 @onready var cannon_orig_basis: Basis = cannon_anchor.transform.basis
 
+@onready var back_reverse_lights: MeshInstance3D = find_child("Back reverse lights", true, false)
+@onready var back_break_lights: MeshInstance3D = find_child("Back break lights", true, false)
+
 func _ready():
 	print("player: ", get_path())
 
@@ -72,8 +75,14 @@ func _process(delta: float) -> void:
 				engine_force = -max_speed * reverse_speed_factor
 		else:
 			brake = brake_force
+
+		if forward_mps > 0:
+			back_break_lights.material_override.set("emission_energy_multiplier", 5)
+		else:
+			back_break_lights.material_override.set("emission_energy_multiplier", 5)
 	else:
 		brake = 0.0
+		back_break_lights.material_override.set("emission_energy_multiplier", 0.5)
 
 	var target_steering = Input.get_axis("steer_right", "steer_left") * steer_angle
 	steering = deg_to_rad(clamp(

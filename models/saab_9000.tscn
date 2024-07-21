@@ -17,14 +17,15 @@ refraction_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q5md7"]
 albedo_color = Color(0.5632, 0.64, 0.61824, 1)
+emission_enabled = true
 emission = Color(0.864675, 0.864675, 0.864675, 1)
-emission_energy_multiplier = 2.0
+emission_energy_multiplier = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gowhc"]
 albedo_color = Color(0.87, 0.0174, 0.0174, 1)
 emission_enabled = true
 emission = Color(1, 0, 0, 1)
-emission_energy_multiplier = 0.5
+emission_energy_multiplier = 5.0
 
 [node name="saab9000" instance=ExtResource("1_jm6q2")]
 
