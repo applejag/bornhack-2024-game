@@ -49,6 +49,8 @@ var forward: Vector3 = Vector3.FORWARD
 @onready var back_reverse_lights: MeshInstance3D = find_child("Back reverse lights", true, false)
 @onready var back_break_lights: MeshInstance3D = find_child("Back break lights", true, false)
 
+@onready var audio_honk: AudioStreamPlayer3D = get_node("AudioHonk")
+
 func _ready():
 	print("player: ", get_path())
 
@@ -102,6 +104,8 @@ func _process(delta: float) -> void:
 		cannon_anchor.look_at(cannon_anchor.global_position + Vector3.DOWN, transform.basis.y)
 	else:
 		cannon_anchor.transform.basis = cannon_orig_basis
+
+	audio_honk.playing = Input.is_action_pressed("honk")
 
 func jump() -> void:
 	linear_velocity.y = jump_force

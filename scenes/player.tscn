@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://23nfu1lwkvmx"]
+[gd_scene load_steps=35 format=3 uid="uid://23nfu1lwkvmx"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_8nyy8"]
 [ext_resource type="Texture2D" uid="uid://rd00dwxpqvid" path="res://models/saab9000_0.png" id="2_0iup4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/camera.gd" id="2_hiin7"]
 [ext_resource type="PackedScene" uid="uid://ct8a6f36d60rt" path="res://models/saab_9000.tscn" id="4_oq0nv"]
 [ext_resource type="Script" path="res://scenes/PlayerShooting.gd" id="4_ruh3n"]
+[ext_resource type="AudioStream" uid="uid://cu3k135lbblvd" path="res://sounds/honk.ogg" id="7_dla27"]
 
 [sub_resource type="Curve" id="Curve_kfhhm"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -430,6 +431,13 @@ explosiveness = 0.97
 randomness = 0.85
 process_material = SubResource("ParticleProcessMaterial_sgdgp")
 draw_pass_1 = SubResource("SphereMesh_aeq27")
+
+[node name="AudioHonk" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.196337, -0.682501)
+stream = ExtResource("7_dla27")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true
 
 [connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
