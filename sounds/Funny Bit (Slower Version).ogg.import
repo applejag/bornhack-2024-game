@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dljrjv3xv684k"
+path="res://.godot/imported/Funny Bit (Slower Version).ogg-945eb24efc4540e867fef6b317c84b35.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/Funny Bit (Slower Version).ogg"
+dest_files=["res://.godot/imported/Funny Bit (Slower Version).ogg-945eb24efc4540e867fef6b317c84b35.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
