@@ -5,6 +5,12 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_k8f0u"]
 font_size = 100
+font_color = Color(1, 0.76, 0.76, 1)
+outline_size = 10
+outline_color = Color(1, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(4, 4)
 
 [sub_resource type="LabelSettings" id="LabelSettings_x6fvx"]
 font_size = 48
@@ -24,12 +30,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -446.0
-offset_top = -249.0
+offset_top = -266.0
 offset_right = 447.0
-offset_bottom = -112.0
+offset_bottom = -129.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Name of the game"
+text = "Airborne Acrobatics"
 label_settings = SubResource("LabelSettings_k8f0u")
 horizontal_alignment = 1
 
@@ -40,14 +46,30 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -293.0
-offset_top = -124.0
+offset_top = -135.0
 offset_right = 294.0
-offset_bottom = -57.0
+offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "BornHack 2024 game jam"
 label_settings = SubResource("LabelSettings_x6fvx")
 horizontal_alignment = 1
+
+[node name="LabelCredits" type="LinkButton" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -29.0
+offset_right = 94.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Made by Kalle (applejag)"
+underline = 1
+uri = "https://applejag.itch.io/"
 
 [node name="Menu panel" type="Panel" parent="."]
 process_mode = 3
@@ -57,9 +79,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -250.0
-offset_top = -43.0
+offset_top = -60.0
 offset_right = 250.0
-offset_bottom = 307.0
+offset_bottom = 290.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(250, 150)
