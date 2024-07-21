@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://23nfu1lwkvmx"]
+[gd_scene load_steps=39 format=3 uid="uid://23nfu1lwkvmx"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_8nyy8"]
 [ext_resource type="Texture2D" uid="uid://rd00dwxpqvid" path="res://models/saab9000_0.png" id="2_0iup4"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://ct8a6f36d60rt" path="res://models/saab_9000.tscn" id="4_oq0nv"]
 [ext_resource type="Script" path="res://scenes/PlayerShooting.gd" id="4_ruh3n"]
 [ext_resource type="AudioStream" uid="uid://cu3k135lbblvd" path="res://sounds/honk.ogg" id="7_dla27"]
+[ext_resource type="AudioStream" uid="uid://dljhtsvj1r5qm" path="res://sounds/jump.wav" id="8_km47p"]
+[ext_resource type="AudioStream" uid="uid://dtnxpdaknecuc" path="res://sounds/jump_land.wav" id="9_ep7hg"]
+[ext_resource type="AudioStream" uid="uid://uyett0gmfjrs" path="res://sounds/player_shoot.wav" id="10_1e0kq"]
+[ext_resource type="AudioStream" uid="uid://o0sf6qmfxce3" path="res://sounds/hurt.wav" id="11_kb7e0"]
 
 [sub_resource type="Curve" id="Curve_kfhhm"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -436,10 +440,34 @@ draw_pass_1 = SubResource("SphereMesh_aeq27")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.196337, -0.682501)
 stream = ExtResource("7_dla27")
 
+[node name="AudioJump" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.196337, -0.682501)
+stream = ExtResource("8_km47p")
+
+[node name="AudioJumpLand" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.196337, -0.682501)
+stream = ExtResource("9_ep7hg")
+
+[node name="AudioShoot" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.196337, -0.682501)
+stream = ExtResource("10_1e0kq")
+
+[node name="AudioHurt" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.196337, -0.682501)
+stream = ExtResource("11_kb7e0")
+
+[node name="AudioLose" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.196337, -0.682501)
+stream = ExtResource("11_kb7e0")
+
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true
 
+[connection signal="jump_land" from="." to="AudioJumpLand" method="play"]
+[connection signal="jump_start" from="." to="AudioJump" method="play"]
 [connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
+[connection signal="health_depleted" from="Health" to="AudioLose" method="play"]
 [connection signal="timeout" from="ResetCarDebounce" to="." method="_on_reset_car_debounce_timeout"]
 [connection signal="timeout" from="ResetJumpDebounce" to="." method="_on_reset_jump_debounce_timeout"]
+[connection signal="bullet_shot" from="Cannon/ShootPoint" to="AudioShoot" method="play"]

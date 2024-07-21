@@ -3,6 +3,8 @@ extends VehicleBody3D
 
 signal health_changed(old_health: int, new_health: int)
 signal health_depleted()
+signal jump_start()
+signal jump_land()
 
 @export_group("Moving")
 @export var max_speed: float = 30
@@ -50,6 +52,7 @@ var forward: Vector3 = Vector3.FORWARD
 @onready var back_break_lights: MeshInstance3D = find_child("Back break lights", true, false)
 
 @onready var audio_honk: AudioStreamPlayer3D = get_node("AudioHonk")
+@onready var audio_hurt: AudioStreamPlayer3D = get_node("AudioHurt")
 
 func _ready():
 	print("player: ", get_path())
@@ -114,6 +117,7 @@ func jump() -> void:
 	can_jump = true
 	reset_jump_timer.start()
 	jump_particles.restart()
+	jump_start.emit()
 
 	jump_state = JumpState.Ascending
 	jump_last_y = position.y
@@ -144,6 +148,7 @@ func _physics_process(delta) -> void:
 				jump_state = JumpState.Grounded
 				jump_state_time = 0
 				print("grounded")
+				jump_land.emit()
 		JumpState.Ascending:
 			if linear_velocity.y < 0:
 				jump_state = JumpState.Falling
@@ -166,6 +171,7 @@ func _on_reset_jump_debounce_timeout() -> void:
 
 func _on_health_health_changed(old_health:int, new_health:int):
 	health_changed.emit(old_health, new_health)
+	audio_hurt.play()
 
 func _on_health_health_depleted():
 	health_depleted.emit()

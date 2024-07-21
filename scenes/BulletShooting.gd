@@ -3,6 +3,7 @@ extends Node3D
 
 @export var bullet: PackedScene = preload("res://scenes/bullet.tscn")
 @export var bullet_speed: float = 100
+signal bullet_shot()
 
 func fire() -> void:
 	var clone: Bullet = bullet.instantiate() as Bullet;
@@ -10,3 +11,4 @@ func fire() -> void:
 	clone.global_position = global_position
 	clone.global_rotation = global_rotation
 	clone.linear_velocity = -global_basis.z * bullet_speed
+	bullet_shot.emit()

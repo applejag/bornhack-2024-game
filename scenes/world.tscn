@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://5x08nt4mer6g"]
+[gd_scene load_steps=17 format=3 uid="uid://5x08nt4mer6g"]
 
 [ext_resource type="Texture2D" uid="uid://bfhxhasa5xwu6" path="res://textures/Kenney-Prototype/Dark/texture_01.png" id="1_41lgv"]
 [ext_resource type="PackedScene" uid="uid://23nfu1lwkvmx" path="res://scenes/player.tscn" id="1_o1hnk"]
@@ -8,7 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://dormigu4sogk6" path="res://textures/white_512x64.tres" id="5_i38wr"]
 [ext_resource type="Script" path="res://scenes/HealthMeter.gd" id="6_puhpc"]
 [ext_resource type="PackedScene" uid="uid://wklnh5bbbv0w" path="res://scenes/tank1.tscn" id="7_dp2in"]
+[ext_resource type="PackedScene" uid="uid://dgiyvs75u00ef" path="res://scenes/enemy_bullet.tscn" id="8_67td0"]
+[ext_resource type="PackedScene" uid="uid://bnrvgx10xvgku" path="res://scenes/explosion.tscn" id="8_kroiu"]
 [ext_resource type="Script" path="res://scenes/EnemyShootingThrottle.gd" id="9_15sbo"]
+[ext_resource type="PackedScene" uid="uid://b64x676dtfy43" path="res://scenes/bullet.tscn" id="12_lw621"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_23hjl"]
 
@@ -174,6 +177,15 @@ script = ExtResource("9_15sbo")
 [node name="Timer" type="Timer" parent="EnemyShootingThrottle"]
 wait_time = 0.3
 one_shot = true
+
+[node name="EnemyBullet" parent="." instance=ExtResource("8_67td0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.89137, -133.366, -22.2943)
+
+[node name="Explosion" parent="." instance=ExtResource("8_kroiu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.608626, -133.366, -22.3232)
+
+[node name="Bullet" parent="." instance=ExtResource("12_lw621")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41672, -133.366, -22.2226)
 
 [connection signal="health_changed" from="Player" to="Health meter" method="_on_player_health_changed"]
 [connection signal="timeout" from="EnemyShootingThrottle/Timer" to="EnemyShootingThrottle" method="_on_timer_timeout"]

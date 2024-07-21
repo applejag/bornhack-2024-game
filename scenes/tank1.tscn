@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://wklnh5bbbv0w"]
+[gd_scene load_steps=11 format=3 uid="uid://wklnh5bbbv0w"]
 
 [ext_resource type="PackedScene" uid="uid://c3tocc7oitrjg" path="res://models/tank1.gltf" id="1_3r31d"]
 [ext_resource type="Script" path="res://scenes/tank.gd" id="1_15cxf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/OutOfBoundTrigger.gd" id="3_x7a0f"]
 [ext_resource type="Script" path="res://scenes/EnemyShooting.gd" id="5_82ljs"]
 [ext_resource type="PackedScene" uid="uid://dgiyvs75u00ef" path="res://scenes/enemy_bullet.tscn" id="6_xid53"]
+[ext_resource type="AudioStream" uid="uid://cu5rkloapjnm8" path="res://sounds/tank_shoot.wav" id="7_xlorn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_un67q"]
 radius = 0.344616
@@ -62,8 +63,12 @@ bullet_speed = 10.0
 wait_time = 5.0
 autostart = true
 
+[node name="AudioShoot" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_xlorn")
+
 [connection signal="health_depleted" from="Health" to="." method="_on_death"]
 [connection signal="out_of_bounds" from="OutOfBoundTrigger" to="." method="_on_death"]
+[connection signal="bullet_shot" from="Shooter" to="AudioShoot" method="play"]
 [connection signal="timeout" from="Shooter/Timer" to="Shooter" method="fire_with_throttle"]
 
 [editable path="tank1"]
