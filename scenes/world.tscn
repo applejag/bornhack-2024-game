@@ -24,7 +24,7 @@ font_size = 48
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ev1p2"]
 
-[node name="Node3D" type="Node3D"]
+[node name="world" type="Node3D"]
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)

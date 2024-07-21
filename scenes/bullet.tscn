@@ -27,7 +27,6 @@ size = Vector3(0.2, 0.2, 0.2)
 radius = 0.1
 
 [node name="Bullet" type="RigidBody3D"]
-gravity_scale = 0.5
 continuous_cd = true
 max_contacts_reported = 10
 contact_monitor = true

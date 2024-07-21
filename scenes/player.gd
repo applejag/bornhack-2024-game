@@ -43,6 +43,9 @@ var forward: Vector3 = Vector3.FORWARD
 @onready var cannon_anchor: Node3D = get_node("Cannon")
 @onready var cannon_orig_basis: Basis = cannon_anchor.transform.basis
 
+func _ready():
+	print("player: ", get_path())
+
 func _process(delta: float) -> void:
 	var current_velocity = linear_velocity
 	var forward_mps = (current_velocity * transform.basis).x

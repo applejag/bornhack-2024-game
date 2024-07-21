@@ -8,7 +8,7 @@ func _process(_delta) -> void:
 		fire()
 
 func fire() -> void:
-	var clone: RigidBody3D = bullet.instantiate() as RigidBody3D;
+	var clone: Bullet = bullet.instantiate() as Bullet;
 	get_tree().root.add_child(clone)
 	clone.global_position = global_position
 	clone.global_rotation = global_rotation
