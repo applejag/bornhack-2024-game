@@ -425,5 +425,7 @@ randomness = 0.85
 process_material = SubResource("ParticleProcessMaterial_sgdgp")
 draw_pass_1 = SubResource("SphereMesh_aeq27")
 
+[connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
 [connection signal="timeout" from="ResetCarDebounce" to="." method="_on_reset_car_debounce_timeout"]
 [connection signal="timeout" from="ResetJumpDebounce" to="." method="_on_reset_jump_debounce_timeout"]

@@ -1,6 +1,9 @@
 class_name Player
 extends VehicleBody3D
 
+signal health_changed(old_health: int, new_health: int)
+signal health_depleted()
+
 @export_group("Moving")
 @export var max_speed: float = 30
 @export_range(0, 1) var reverse_speed_factor: float = 0.3
@@ -147,3 +150,9 @@ func _on_reset_car_debounce_timeout() -> void:
 
 func _on_reset_jump_debounce_timeout() -> void:
 	can_jump = true
+
+func _on_health_health_changed(old_health:int, new_health:int):
+	health_changed.emit(old_health, new_health)
+
+func _on_health_health_depleted():
+	health_depleted.emit()

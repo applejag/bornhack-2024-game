@@ -1,11 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://5x08nt4mer6g"]
+[gd_scene load_steps=18 format=3 uid="uid://5x08nt4mer6g"]
 
 [ext_resource type="Texture2D" uid="uid://bfhxhasa5xwu6" path="res://textures/Kenney-Prototype/Dark/texture_01.png" id="1_41lgv"]
 [ext_resource type="PackedScene" uid="uid://23nfu1lwkvmx" path="res://scenes/player.tscn" id="1_o1hnk"]
 [ext_resource type="Texture2D" uid="uid://ckf316dlvi6vh" path="res://textures/semicircle.png" id="2_tg7hh"]
 [ext_resource type="Script" path="res://scenes/speedometer.gd" id="3_kxqka"]
 [ext_resource type="PackedScene" uid="uid://ctvbdf6s8kgus" path="res://models/light_post.tscn" id="5_57wtt"]
+[ext_resource type="Texture2D" uid="uid://dormigu4sogk6" path="res://textures/white_512x64.tres" id="5_i38wr"]
 [ext_resource type="Script" path="res://scenes/health.gd" id="6_hegfg"]
+[ext_resource type="Script" path="res://scenes/HealthMeter.gd" id="6_puhpc"]
 [ext_resource type="PackedScene" uid="uid://wklnh5bbbv0w" path="res://scenes/tank1.tscn" id="7_dp2in"]
 [ext_resource type="PackedScene" uid="uid://dgiyvs75u00ef" path="res://scenes/enemy_bullet.tscn" id="8_67td0"]
 [ext_resource type="Script" path="res://scenes/EnemyShootingThrottle.gd" id="9_15sbo"]
@@ -95,6 +97,46 @@ offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "0 km/h"
+label_settings = SubResource("LabelSettings_vrgqa")
+horizontal_alignment = 1
+
+[node name="Health meter" type="TextureProgressBar" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -286.0
+offset_top = -55.0
+offset_right = 226.0
+offset_bottom = 9.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+value = 50.0
+texture_under = ExtResource("5_i38wr")
+texture_progress = ExtResource("5_i38wr")
+tint_under = Color(0.1536, 0.24, 0.18672, 1)
+tint_progress = Color(0, 0.6, 0.0392157, 1)
+radial_initial_angle = 270.0
+radial_fill_degrees = 180.0
+radial_center_offset = Vector2(0, 256)
+script = ExtResource("6_puhpc")
+
+[node name="Label" type="Label" parent="Health meter"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -64.0
+offset_right = 81.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "50 / 100"
 label_settings = SubResource("LabelSettings_vrgqa")
 horizontal_alignment = 1
 
@@ -206,6 +248,7 @@ script = ExtResource("9_15sbo")
 wait_time = 0.3
 one_shot = true
 
+[connection signal="health_changed" from="Player" to="Health meter" method="_on_player_health_changed"]
 [connection signal="health_depleted" from="Enemy/Health" to="Enemy" method="queue_free"]
 [connection signal="health_depleted" from="Enemy2/Health" to="Enemy2" method="queue_free"]
 [connection signal="health_depleted" from="Enemy3/Health" to="Enemy3" method="queue_free"]
