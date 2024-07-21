@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://5x08nt4mer6g"]
+[gd_scene load_steps=19 format=3 uid="uid://5x08nt4mer6g"]
 
 [ext_resource type="Texture2D" uid="uid://bfhxhasa5xwu6" path="res://textures/Kenney-Prototype/Dark/texture_01.png" id="1_41lgv"]
 [ext_resource type="PackedScene" uid="uid://23nfu1lwkvmx" path="res://scenes/player.tscn" id="1_o1hnk"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://wklnh5bbbv0w" path="res://scenes/tank1.tscn" id="7_dp2in"]
 [ext_resource type="PackedScene" uid="uid://dgiyvs75u00ef" path="res://scenes/enemy_bullet.tscn" id="8_67td0"]
 [ext_resource type="Script" path="res://scenes/EnemyShootingThrottle.gd" id="9_15sbo"]
+[ext_resource type="PackedScene" uid="uid://c2om1eygf047" path="res://scenes/damage_label.tscn" id="12_23lcp"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_23hjl"]
 
@@ -247,6 +248,8 @@ script = ExtResource("9_15sbo")
 [node name="Timer" type="Timer" parent="EnemyShootingThrottle"]
 wait_time = 0.3
 one_shot = true
+
+[node name="DamageLabel" parent="." instance=ExtResource("12_23lcp")]
 
 [connection signal="health_changed" from="Player" to="Health meter" method="_on_player_health_changed"]
 [connection signal="health_depleted" from="Enemy/Health" to="Enemy" method="queue_free"]

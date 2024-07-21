@@ -27,8 +27,8 @@ rotation_speed = 20.0
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("1_h3ebx")
-health = 5
-max_health = 5
+health = 50
+max_health = 50
 
 [node name="OutOfBoundTrigger" type="Node3D" parent="."]
 script = ExtResource("3_x7a0f")

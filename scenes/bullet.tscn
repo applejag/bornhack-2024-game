@@ -33,6 +33,7 @@ continuous_cd = true
 max_contacts_reported = 10
 contact_monitor = true
 script = ExtResource("1_iuvrj")
+damage = 15
 spawn_on_collision = ExtResource("2_g37nu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

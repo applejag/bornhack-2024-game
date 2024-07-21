@@ -63,6 +63,7 @@ max_contacts_reported = 10
 contact_monitor = true
 linear_velocity = Vector3(0, 0, 1)
 script = ExtResource("1_f74gb")
+damage = 5
 spawn_on_collision = ExtResource("2_kjs70")
 
 [node name="DeathTimer" type="Timer" parent="."]
