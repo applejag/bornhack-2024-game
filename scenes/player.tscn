@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://23nfu1lwkvmx"]
+[gd_scene load_steps=34 format=3 uid="uid://23nfu1lwkvmx"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_8nyy8"]
 [ext_resource type="Texture2D" uid="uid://rd00dwxpqvid" path="res://models/saab9000_0.png" id="2_0iup4"]
@@ -150,6 +150,11 @@ size = Vector3(0.651006, 0.230777, 1.5064)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7c8kw"]
 size = Vector3(0.586, 0.0991, 0.914909)
+
+[sub_resource type="Environment" id="Environment_nra1b"]
+glow_enabled = true
+glow_bloom = 1.0
+glow_hdr_threshold = 0.9
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxjy1"]
 resource_name = "Material.1"
@@ -361,6 +366,7 @@ move_back_y_factor = 0.7
 
 [node name="Camera3D" type="Camera3D" parent="Camera arm"]
 transform = Transform3D(1, 0, 0, 0, 0.996707, -0.0810862, 0, 0.0810862, 0.996707, 0, 2.30741, 6.21962)
+environment = SubResource("Environment_nra1b")
 current = true
 
 [node name="Head light left" type="SpotLight3D" parent="."]
