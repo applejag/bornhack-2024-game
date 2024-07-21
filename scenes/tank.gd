@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var acceleration: float = 5
 @export var rotation_speed: float = 5
 
-@onready var player = get_node("/root/world/Player")
+@onready var player = get_node("/root/main/world/Player")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")

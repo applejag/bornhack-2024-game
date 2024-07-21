@@ -1,13 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0f5u5nmflh7n"]
+[gd_scene load_steps=4 format=3 uid="uid://d0f5u5nmflh7n"]
 
 [ext_resource type="PackedScene" uid="uid://5x08nt4mer6g" path="res://scenes/world.tscn" id="1_qd7ld"]
 
-[node name="Main" type="Node"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtv1x"]
+bg_color = Color(1, 1, 1, 0.4)
+border_width_left = 1
+border_width_top = 1
+border_color = Color(0.683077, 0.683077, 0.683077, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2dovh"]
+font_size = 48
+
+[node name="main" type="Node"]
 
 [node name="world" parent="." instance=ExtResource("1_qd7ld")]
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ui" type="Node" parent="."]
+
+[node name="Pause panel" type="Panel" parent="ui"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -174.0
+offset_right = 124.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 200)
+theme_override_styles/panel = SubResource("StyleBoxFlat_dtv1x")
+
+[node name="Label" type="Label" parent="ui/Pause panel"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 38.0
+offset_right = 243.0
+offset_bottom = 105.0
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_2dovh")
