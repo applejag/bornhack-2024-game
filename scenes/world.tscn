@@ -196,6 +196,7 @@ autoplay = true
 bus = &"Music"
 
 [node name="Pause panel" parent="." instance=ExtResource("14_mekm1")]
+visible = false
 
 [connection signal="health_changed" from="Player" to="Health meter" method="_on_player_health_changed"]
 [connection signal="timeout" from="EnemyShootingThrottle/Timer" to="EnemyShootingThrottle" method="_on_timer_timeout"]

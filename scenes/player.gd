@@ -1,6 +1,8 @@
 class_name Player
 extends VehicleBody3D
 
+static var instance: Player
+
 signal health_changed(old_health: int, new_health: int)
 signal health_depleted()
 signal jump_start()
@@ -55,6 +57,7 @@ var forward: Vector3 = Vector3.FORWARD
 @onready var audio_hurt: AudioStreamPlayer3D = get_node("AudioHurt")
 
 func _ready():
+	instance = self
 	print("player: ", get_path())
 
 func _process(delta: float) -> void:

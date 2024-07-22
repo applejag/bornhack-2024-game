@@ -1,7 +1,121 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0f5u5nmflh7n"]
+[gd_scene load_steps=6 format=3 uid="uid://d0f5u5nmflh7n"]
 
-[ext_resource type="PackedScene" uid="uid://cnt3xe7mqjrei" path="res://scenes/menu.tscn" id="2_2qpu6"]
+[ext_resource type="Script" path="res://scenes/Menu.gd" id="1_2n8vq"]
+[ext_resource type="PackedScene" uid="uid://cew2jxjmtnsg0" path="res://scenes/sound_settings.tscn" id="2_bd5fg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_viefc"]
+font_size = 100
+font_color = Color(1, 0.76, 0.76, 1)
+outline_size = 10
+outline_color = Color(1, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ab6gj"]
+font_size = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mg4kc"]
+bg_color = Color(1, 0.22, 0.22, 0.4)
+border_width_left = 2
+border_width_top = 2
+border_color = Color(0.82, 0.21648, 0.0656, 1)
 
 [node name="main" type="Node"]
 
-[node name="menu" parent="." instance=ExtResource("2_2qpu6")]
+[node name="LabelTitle" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -446.0
+offset_top = -266.0
+offset_right = 447.0
+offset_bottom = -129.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hood under wheels"
+label_settings = SubResource("LabelSettings_viefc")
+horizontal_alignment = 1
+
+[node name="LabelSubtitle" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.0
+offset_top = -135.0
+offset_right = 294.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BornHack 2024 game jam"
+label_settings = SubResource("LabelSettings_ab6gj")
+horizontal_alignment = 1
+
+[node name="LinkButtonCredits" type="LinkButton" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -29.0
+offset_right = 94.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Made by Kalle (applejag)"
+underline = 1
+uri = "https://applejag.itch.io/"
+
+[node name="Menu panel" type="Panel" parent="."]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -60.0
+offset_right = 250.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(250, 150)
+theme_override_styles/panel = SubResource("StyleBoxFlat_mg4kc")
+script = ExtResource("1_2n8vq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu panel"]
+custom_minimum_size = Vector2(400, 250)
+layout_mode = 0
+offset_left = 53.0
+offset_top = 53.0
+offset_right = 453.0
+offset_bottom = 93.0
+alignment = 1
+
+[node name="ButtonStart" type="Button" parent="Menu panel/VBoxContainer"]
+layout_mode = 2
+text = "Start game"
+
+[node name="Control" type="Control" parent="Menu panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="SoundSettings" parent="Menu panel/VBoxContainer" instance=ExtResource("2_bd5fg")]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Menu panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="ButtonExit" type="Button" parent="Menu panel/VBoxContainer"]
+layout_mode = 2
+text = "Exit game"
+
+[connection signal="start_game" from="Menu panel" to="." method="queue_free"]
+[connection signal="button_down" from="Menu panel/VBoxContainer/ButtonStart" to="Menu panel" method="_on_button_start_button_down"]
+[connection signal="button_down" from="Menu panel/VBoxContainer/ButtonExit" to="Menu panel" method="_on_button_exit_button_down"]

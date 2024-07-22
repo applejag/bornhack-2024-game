@@ -14,7 +14,6 @@ font_size = 48
 
 [node name="Pause panel" type="Panel"]
 process_mode = 3
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -39,13 +38,29 @@ offset_bottom = 105.0
 text = "PAUSED"
 label_settings = SubResource("LabelSettings_2dovh")
 
-[node name="Button" type="Button" parent="."]
+[node name="ButtonContinue" type="Button" parent="."]
 layout_mode = 0
 offset_left = 90.0
-offset_top = 348.0
+offset_top = 302.0
 offset_right = 211.0
-offset_bottom = 379.0
+offset_bottom = 333.0
 text = "Continue (Esc)"
+
+[node name="ButtonMenu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 348.0
+offset_right = 147.0
+offset_bottom = 379.0
+text = "Back to menu"
+
+[node name="ButtonRestart" type="Button" parent="."]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 348.0
+offset_right = 278.0
+offset_bottom = 379.0
+text = "Restart"
 
 [node name="SoundSettings" parent="." instance=ExtResource("2_ydquv")]
 custom_minimum_size = Vector2(250, 0)
@@ -55,4 +70,6 @@ offset_top = 125.0
 offset_right = 277.0
 offset_bottom = 262.0
 
-[connection signal="button_down" from="Button" to="." method="unpause"]
+[connection signal="button_down" from="ButtonContinue" to="." method="unpause"]
+[connection signal="pressed" from="ButtonMenu" to="." method="return_to_main_menu"]
+[connection signal="pressed" from="ButtonRestart" to="." method="restart_level"]

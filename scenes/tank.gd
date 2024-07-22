@@ -7,8 +7,6 @@ extends CharacterBody3D
 @export var acceleration: float = 5
 @export var rotation_speed: float = 5
 
-@onready var player = get_node("/root/world/Player")
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -17,7 +15,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	var vector_to_player = player.global_position - global_position
+	var vector_to_player = Player.instance.global_position - global_position
 
 	var angle_to_player_rad = atan2(vector_to_player.x, vector_to_player.z)
 	rotation.y = rotate_toward(rotation.y, angle_to_player_rad, deg_to_rad(rotation_speed) * delta)
