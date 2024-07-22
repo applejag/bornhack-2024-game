@@ -1,4 +1,4 @@
-# BornHack 2024 Game jam
+# Flippy Shooty
 
 My game made for the [BornHack 2024 Game jam](https://itch.io/jam/bornhack-2024-gamejam)
 
