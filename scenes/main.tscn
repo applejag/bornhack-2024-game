@@ -35,7 +35,7 @@ offset_right = 447.0
 offset_bottom = -129.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Hood under wheels"
+text = "Flippy Shooty"
 label_settings = SubResource("LabelSettings_viefc")
 horizontal_alignment = 1
 
