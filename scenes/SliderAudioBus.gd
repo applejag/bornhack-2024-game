@@ -17,8 +17,8 @@ func _on_slider_value_changed(new_value: float) -> void:
 
 ## Converts from 0-100 value to dB's
 func value_to_db(val: float) -> float:
-	return lerp(-80, 0, val / 100)
+	return lerp(-20, 0, val / 100)
 
 ## Converts from dB's to 0-100 value
 func db_to_value(val: float) -> float:
-	return inverse_lerp(-80, 0, val) * 100
+	return inverse_lerp(-20, 0, val) * 100

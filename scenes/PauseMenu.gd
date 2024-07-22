@@ -1,8 +1,5 @@
 extends Panel
 
-@export var main: PackedScene = preload("res://scenes/main.tscn")
-@export var world: PackedScene = preload("res://scenes/world.tscn")
-
 var is_paused: bool = false
 
 func _process(_delta):
@@ -23,18 +20,18 @@ func unpause() -> void:
 	is_paused = false
 
 func restart_level() -> void:
+	unpause()
 	var old_world = get_node("/root/world")
 	old_world.queue_free()
 	old_world.name = "old_world"
-	call_deferred("spawn_scene", world)
-	unpause()
+	call_deferred("spawn_scene", load("res://scenes/world.tscn"))
 
 func return_to_main_menu() -> void:
+	unpause()
 	var old_world = get_node("/root/world")
 	old_world.queue_free()
 	old_world.name = "old_world"
-	call_deferred("spawn_scene", main)
-	unpause()
+	call_deferred("spawn_scene", load("res://scenes/main.tscn"))
 
 func spawn_scene(scene: PackedScene) -> void:
 	var clone = scene.instantiate()
