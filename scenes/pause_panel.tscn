@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://q7fan4nmgaf"]
+[gd_scene load_steps=7 format=3 uid="uid://q7fan4nmgaf"]
 
 [ext_resource type="Script" path="res://scenes/PauseMenu.gd" id="1_1qios"]
 [ext_resource type="PackedScene" uid="uid://cew2jxjmtnsg0" path="res://scenes/sound_settings.tscn" id="2_ydquv"]
+[ext_resource type="Script" path="res://scenes/WarningBlinkerCheckBox.gd" id="3_8ww1u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtv1x"]
 bg_color = Color(1, 0.22, 0.22, 0.4)
@@ -11,6 +12,12 @@ border_color = Color(0.82, 0.21648, 0.0656, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2dovh"]
 font_size = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hueuq"]
+bg_color = Color(1, 0.22, 0.22, 0.4)
+border_width_left = 2
+border_width_top = 2
+border_color = Color(0.82, 0.21648, 0.0656, 1)
 
 [node name="Pause panel" type="Panel"]
 process_mode = 3
@@ -70,6 +77,52 @@ offset_top = 125.0
 offset_right = 277.0
 offset_bottom = 262.0
 
+[node name="Menu panel" type="Panel" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 162.0
+offset_top = -138.0
+offset_right = 462.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(250, 150)
+theme_override_styles/panel = SubResource("StyleBoxFlat_hueuq")
+
+[node name="Label" type="Label" parent="Menu panel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 12.0
+offset_right = 101.0
+offset_bottom = 35.0
+text = "Car settings"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu panel"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 45.0
+offset_right = 53.0
+offset_bottom = 85.0
+
+[node name="CheckBox3" type="CheckBox" parent="Menu panel/VBoxContainer"]
+layout_mode = 2
+text = "Climate control (ACC)"
+
+[node name="CheckBox2" type="CheckBox" parent="Menu panel/VBoxContainer"]
+layout_mode = 2
+text = "Seat warmer"
+
+[node name="CheckBox" type="CheckBox" parent="Menu panel/VBoxContainer"]
+layout_mode = 2
+text = "Hazard lights"
+script = ExtResource("3_8ww1u")
+
 [connection signal="button_down" from="ButtonContinue" to="." method="unpause"]
 [connection signal="pressed" from="ButtonMenu" to="." method="return_to_main_menu"]
 [connection signal="pressed" from="ButtonRestart" to="." method="restart_level"]
+[connection signal="toggled" from="Menu panel/VBoxContainer/CheckBox" to="Menu panel/VBoxContainer/CheckBox" method="_on_toggled"]

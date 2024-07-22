@@ -212,14 +212,91 @@ offset_right = 264.0
 offset_bottom = 33.0
 text = "Press [R] to reset car orientation"
 
-[node name="light-post" parent="." instance=ExtResource("5_57wtt")]
+[node name="Decor" type="Node3D" parent="."]
+
+[node name="light-post" parent="Decor" instance=ExtResource("5_57wtt")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25481, 4.76837e-07, -6.53981)
 
-[node name="light-post2" parent="." instance=ExtResource("5_57wtt")]
+[node name="light-post2" parent="Decor" instance=ExtResource("5_57wtt")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25481, 4.76837e-07, -18.5398)
 
-[node name="light-post3" parent="." instance=ExtResource("5_57wtt")]
+[node name="light-post3" parent="Decor" instance=ExtResource("5_57wtt")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25481, 4.76837e-07, -30.5398)
+
+[node name="light-post4" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25481, 4.76837e-07, -42.5398)
+
+[node name="light-post5" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25481, 4.76837e-07, -54.5398)
+
+[node name="light-post6" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25481, 4.76837e-07, -66.5398)
+
+[node name="light-post7" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25481, 4.76837e-07, -78.5398)
+
+[node name="light-post12" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -37.4244, 4.76837e-07, -34.0095)
+
+[node name="light-post13" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -45.9097, 4.76837e-07, -42.4948)
+
+[node name="light-post14" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -54.395, 4.76837e-07, -50.9801)
+
+[node name="light-post15" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -62.8802, 4.76837e-07, -59.4654)
+
+[node name="light-post16" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -71.3655, 4.76837e-07, -67.9507)
+
+[node name="light-post17" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -12.6921, 2.38419e-06, 28.9893)
+
+[node name="light-post18" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -18.6921, 2.38419e-06, 39.3816)
+
+[node name="light-post19" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -24.6921, 2.38419e-06, 49.7739)
+
+[node name="light-post20" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -30.6921, 2.38419e-06, 60.1662)
+
+[node name="light-post21" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -36.6921, 2.38419e-06, 70.5585)
+
+[node name="light-post22" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -42.6921, 2.38419e-06, 80.9508)
+
+[node name="light-post23" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -48.6921, 2.38419e-06, 91.3432)
+
+[node name="light-post24" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 18.3469, 1.00136e-05, 26.6091)
+
+[node name="light-post25" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 26.8322, 1.00136e-05, 35.0944)
+
+[node name="light-post26" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 35.3174, 1.00136e-05, 43.5796)
+
+[node name="light-post27" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 43.8027, 1.00136e-05, 52.0649)
+
+[node name="light-post28" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 52.288, 1.00136e-05, 60.5502)
+
+[node name="light-post29" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 60.7733, 1.00136e-05, 69.0355)
+
+[node name="light-post30" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 69.2586, 1.00136e-05, 77.5208)
+
+[node name="light-post8" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25481, 4.76837e-07, -90.5398)
+
+[node name="light-post9" parent="Decor" instance=ExtResource("5_57wtt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25481, 4.76837e-07, -102.54)
 
 [node name="EnemyShootingThrottle" type="Node" parent="."]
 script = ExtResource("9_15sbo")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://23nfu1lwkvmx"]
+[gd_scene load_steps=40 format=3 uid="uid://23nfu1lwkvmx"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_8nyy8"]
 [ext_resource type="Texture2D" uid="uid://rd00dwxpqvid" path="res://models/saab9000_0.png" id="2_0iup4"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://dtnxpdaknecuc" path="res://sounds/jump_land.wav" id="9_ep7hg"]
 [ext_resource type="AudioStream" uid="uid://uyett0gmfjrs" path="res://sounds/player_shoot.wav" id="10_1e0kq"]
 [ext_resource type="AudioStream" uid="uid://o0sf6qmfxce3" path="res://sounds/hurt.wav" id="11_kb7e0"]
+[ext_resource type="Script" path="res://scenes/Warning blinkers.gd" id="12_qwug7"]
 
 [sub_resource type="Curve" id="Curve_kfhhm"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -469,6 +470,38 @@ bus = &"SFX"
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true
 
+[node name="WarningBlinkers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.279434, 0)
+visible = false
+script = ExtResource("12_qwug7")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WarningBlinkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.450555, 0, -0.626725)
+light_color = Color(1, 0.631373, 0, 1)
+light_size = 0.006
+omni_range = 1.0
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="WarningBlinkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.451, 0, -0.627)
+light_color = Color(1, 0.631373, 0, 1)
+light_size = 0.006
+omni_range = 1.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="WarningBlinkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.450555, 0.0305695, 0.715912)
+light_color = Color(1, 0.631373, 0, 1)
+light_size = 0.006
+omni_range = 1.0
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="WarningBlinkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.451, 0.031, 0.716)
+light_color = Color(1, 0.631373, 0, 1)
+light_size = 0.006
+omni_range = 1.0
+
+[node name="Timer" type="Timer" parent="WarningBlinkers"]
+wait_time = 0.5
+
 [connection signal="jump_land" from="." to="AudioJumpLand" method="play"]
 [connection signal="jump_start" from="." to="AudioJump" method="play"]
 [connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
@@ -477,3 +510,4 @@ current = true
 [connection signal="timeout" from="ResetCarDebounce" to="." method="_on_reset_car_debounce_timeout"]
 [connection signal="timeout" from="ResetJumpDebounce" to="." method="_on_reset_jump_debounce_timeout"]
 [connection signal="bullet_shot" from="Cannon/ShootPoint" to="AudioShoot" method="play"]
+[connection signal="timeout" from="WarningBlinkers/Timer" to="WarningBlinkers" method="toggle_visibility"]
